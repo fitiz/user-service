@@ -1,4 +1,4 @@
-package com.fitiz.user;
+package com.fitiz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

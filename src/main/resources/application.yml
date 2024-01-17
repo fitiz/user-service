@@ -1,0 +1,15 @@
+okta:
+  oauth2:
+    issuer: https://dev-mewzvus7n0bttt3p.us.auth0.com/
+    audience: https://api.fitiz.com/api
+server:
+    port:3010
+
+
+logging:
+  level:
+    root: WARN
+    org.springframework.web: DEBUG
+    com.fitiz.security: INFO
+
+
