@@ -17,6 +17,10 @@ class APIControllerTest {
     void publicTest() {
         assertEquals( "Hello", apiController.publicEndpoint());
     }
-
+    
+    @Test
+    void privateTest() {
+        assertEquals( "Private Hello", apiController.privateEndpoint());
+    }
 
 }
