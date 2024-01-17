@@ -12,4 +12,18 @@ spring:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
         open-in-view: false
 server:
-    port: 5000
+    port: 3010
+
+okta:
+  oauth2:
+    issuer: https://dev-mewzvus7n0bttt3p.us.auth0.com/
+    audience: https://api.fitiz.com/api
+
+
+logging:
+  level:
+    root: WARN
+    org.springframework.web: DEBUG
+    com.fitiz.security: INFO
+
+
