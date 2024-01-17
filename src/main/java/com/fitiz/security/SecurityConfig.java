@@ -58,35 +58,6 @@ public class SecurityConfig {
 
     }
     
-    @Bean
-    public UrlBasedCorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*")); // Set the origins you want to allow
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*")); // Allow all headers
-        configuration.setAllowCredentials(true); // Allow credentials
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Apply CORS configuration to all paths
-        return source;
-    }
-
-   @Bean
-    public NimbusJwtDecoder jwtDecoder() {
-        // NimbusJwtDecoder will use the JWK set URI from Auth0 to validate the JWT signature
-        String jwkSetUri = issuer + ".well-known/jwks.json";
-        return (NimbusJwtDecoder) JwtDecoders.fromOidcIssuerLocation(issuer);
-    }
-
-    //JwtDecoder jwtDecoder() {
-    //    OAuth2TokenValidator<Jwt> withAudience = new AudienceValidator(audience);
-
-    //    OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
-    //    OAuth2TokenValidator<Jwt> validator = new DelegatingOAuth2TokenValidator<>(withAudience, withIssuer);
-
-    //    NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders.fromOidcIssuerLocation(issuer);
-    //    jwtDecoder.setJwtValidator(validator);
-    //    return jwtDecoder;
-    //}
 }
  
