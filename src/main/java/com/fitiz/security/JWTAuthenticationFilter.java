@@ -30,6 +30,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,6 +43,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     //@Value("${okta.oauth2.audience}")
     private String AUDIENCE = "https://api.fitiz.com/api";
+
+
+    private String AUTH0_USERS_API =  "https://dev-mewzvus7n0bttt3p.us.auth0.com/api/v2/users/";
 
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) 
         throws ServletException, IOException {
@@ -59,12 +63,14 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
                 List<GrantedAuthority> authorities = getAuthoritiesFromToken(token);
                 String username = getUsernameFromToken(token);
                  // Create an Authentication object
-                Authentication auth = new UsernamePasswordAuthenticationToken(username, null, authorities);
 
+
+                Authentication auth = new UsernamePasswordAuthenticationToken(username, null, authorities);
                 // Set the Authentication in the SecurityContext
                 SecurityContextHolder.getContext().setAuthentication(auth);
                 logger.info("Token is valid");
                 // Continue the filter chain
+                request.setAttribute("jwtToken", token);
                 filterChain.doFilter(request, response);
             } else {
                 // Handle invalid token
@@ -107,7 +113,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         return List.of(scopes.split(" ")).stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-}
+    }
 
     private String getUsernameFromToken(String token) {
         DecodedJWT jwt = JWT.decode(token);         
