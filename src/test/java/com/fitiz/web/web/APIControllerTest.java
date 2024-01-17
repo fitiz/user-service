@@ -1,4 +1,4 @@
-package com.fitiz.user.controller;
+package com.fitiz.web;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -8,13 +8,15 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
-class HelloWorldControllerTest {
+class APIControllerTest {
 
     @InjectMocks
-    HelloWorldController helloWorldController;
+    APIController apiController;
 
     @Test
-    void helloTest() {
-        assertEquals( "Hello world!", helloWorldController.hello());
+    void publicTest() {
+        assertEquals( "Hello", apiController.publicEndpoint());
     }
+
+
 }
