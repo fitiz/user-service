@@ -12,7 +12,7 @@ spring:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
         open-in-view: false
 server:
-    port: 3010
+    port: 5001
 
 okta:
   oauth2:
