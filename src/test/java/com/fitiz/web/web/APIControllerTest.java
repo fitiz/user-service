@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.springframework.http.ResponseEntity;
 
 @ExtendWith(MockitoExtension.class)
 class APIControllerTest {
@@ -15,12 +16,12 @@ class APIControllerTest {
 
     @Test
     void publicTest() {
-        assertEquals( "Hello", apiController.publicEndpoint());
+        assertEquals( ResponseEntity.ok("Hello"), apiController.publicEndpoint());
     }
     
     @Test
     void privateTest() {
-        assertEquals( "Private Hello", apiController.privateEndpoint());
+        assertEquals( ResponseEntity.ok("Private Hello"), apiController.privateEndpoint());
     }
 
 }
