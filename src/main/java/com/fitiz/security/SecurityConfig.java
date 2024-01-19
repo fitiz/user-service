@@ -28,31 +28,16 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    @Value("${okta.oauth2.issuer}")
-    private String issuer;
-
-    @Value("${okta.oauth2.audience}")
-    private String audience;
-
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
             return http
-                    //.cors(cors -> cors.configurationSource(corsConfigurationSource())) // Apply CORS configuration
-                    //.csrf(csrf -> csrf.disable())
-                    //.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/api/public/**").permitAll()
                         .requestMatchers("/api/private/**").authenticated()
-                        //.requestMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages")
                     )
-                    //.formLogin(formLogin -> formLogin.disable())
-                    //.httpBasic(httpBasic -> httpBasic.disable())
                     .cors(withDefaults())
-                    //.oauth2ResourceServer(oauth2 -> oauth2
-                    //    .jwt(withDefaults())
-                    //)
                     .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .build();
 

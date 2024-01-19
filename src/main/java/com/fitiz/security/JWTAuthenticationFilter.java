@@ -29,12 +29,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-
+import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+@Component
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
@@ -42,10 +43,8 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     private String AUTH0_DOMAIN =  "https://dev-mewzvus7n0bttt3p.us.auth0.com/";
 
     //@Value("${okta.oauth2.audience}")
-    private String AUDIENCE = "https://api.fitiz.com/api";
+    private String AUDIENCE= "https://api.fitiz.com/api";
 
-
-    private String AUTH0_USERS_API =  "https://dev-mewzvus7n0bttt3p.us.auth0.com/api/v2/users/";
 
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) 
         throws ServletException, IOException {

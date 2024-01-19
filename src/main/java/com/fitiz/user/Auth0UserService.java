@@ -22,6 +22,8 @@ public class Auth0UserService {
     private static final Logger logger = LoggerFactory.getLogger(Auth0UserService.class); 
     private final RestTemplate restTemplate;
 
+    private String AUTH0_USERINFO_API = "https://dev-mewzvus7n0bttt3p.us.auth0.com/userinfo";
+
     public Auth0UserService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
@@ -34,7 +36,7 @@ public class Auth0UserService {
         logger.info("userId: " + userId);
 
         String url = UriComponentsBuilder
-                .fromHttpUrl("https://dev-mewzvus7n0bttt3p.us.auth0.com/userinfo")
+                .fromHttpUrl(AUTH0_USERINFO_API)
                 .toUriString();
 
 
