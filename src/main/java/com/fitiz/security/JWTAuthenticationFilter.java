@@ -13,7 +13,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import java.security.interfaces.RSAPublicKey;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.springframework.web.filter.GenericFilterBean;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.FilterChain;
@@ -30,7 +29,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
-import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 import java.util.stream.Collectors;
