@@ -19,6 +19,12 @@ okta:
     issuer: ${SPRING_AUTH0_ISSUER:https://dev-mewzvus7n0bttt3p.us.auth0.com/}
     audience: ${SPRING_AUTH0_AUDIENCE:https://api.fitiz.com/api}
 
+
+eureka:
+  client:
+    serviceurl:
+      defaultzone: ${eureka_url:http://localhost:8710/eureka/}
+
 logging:
   level:
     root: WARN

@@ -21,27 +21,23 @@ import org.springframework.security.core.Authentication;
  * @see com.auth0.example.security.SecurityConfig to see how these endpoints are protected.
  */
 @RestController
+@RequestMapping("/user")
 public class APIController {
 
     private static final Logger logger = LoggerFactory.getLogger(APIController.class);
     @Autowired
     private Auth0UserService auth0UserService;
 
-    @GetMapping(value = "/api/public/testMessage")
-    public ResponseEntity<String> publicEndpoint() {
-        return ResponseEntity.ok("Hello");
+    @GetMapping(value = "/public/testMessagePublic")
+    public String publicEndpoint() {
+        return "Hello";
     }
-    @GetMapping(value = "/api/private/testMessage")
+    @GetMapping(value = "/private/testMessagePrivate")
     public ResponseEntity<String> privateEndpoint() {
         return ResponseEntity.ok("Private Hello");
     }
 
-    @GetMapping(value = "/api/private-scoped/testMessage")
-    public Message privateScopedEndpoint() {
-        return new Message("All good. You can see this because you are Authenticated with a Token granted the 'read:messages' scope");
-    }
-
-    @GetMapping(value = "/api/private/myDetails")
+    @GetMapping(value = "/private/myDetails")
     public ResponseEntity<String> privateMyDetailsEndpoint(Authentication auth, HttpServletRequest request) {
 
         logger.info("APIController.privateMyDetailsEndpoint");
